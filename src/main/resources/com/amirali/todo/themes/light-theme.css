@@ -24,7 +24,7 @@
     -fx-background-color: white;
     -fx-background-radius: 5px;
     -fx-text-fill: black;
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
     -fx-border-radius: 5px;
 }
 
@@ -32,7 +32,7 @@
     -fx-background-color: white;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
 }
 
 .menu-item .label {
@@ -48,7 +48,7 @@
 }
 
 #item-root {
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
     -fx-border-radius: 5px;
 }
 
@@ -70,7 +70,7 @@
     -fx-background-color: white;
     -fx-background-radius: 5px;
     -fx-text-fill: black;
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
     -fx-border-radius: 5px;
 }
 
@@ -93,5 +93,5 @@
 .separator *.line {
     -fx-border-style: solid;
     -fx-border-width: 1px;
-    -fx-border-color: darkgray;
+    -fx-border-color: lightgray;
 }

@@ -99,6 +99,7 @@ public class AppController implements Initializable {
             todoList.setItems(baseList);
         }
     }
+    
     @FXML
     public void changeTheme(ActionEvent actionEvent) {
         var scene = root.getScene();
