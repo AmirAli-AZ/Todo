@@ -1,0 +1,97 @@
+#root {
+    -fx-background-color: white;
+}
+
+#root .split-pane-divider {
+    -fx-background-color: lightgray;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+
+.list-cell {
+    -fx-background-color: white;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-text-fill: black;
+    -fx-border-color: darkgray;
+    -fx-border-radius: 5px;
+}
+
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: darkgray;
+}
+
+.menu-item .label {
+    -fx-text-fill: black;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+.menu-item:focused .synced-theme-icons {
+    -fx-fill: white;
+}
+
+#item-root {
+    -fx-border-color: darkgray;
+    -fx-border-radius: 5px;
+}
+
+.synced-theme-icons {
+    -fx-fill: black;
+}
+
+#dialog-root {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 5px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+.text-area {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-text-fill: black;
+    -fx-border-color: darkgray;
+    -fx-border-radius: 5px;
+}
+
+.text-area .content {
+    -fx-background-color: white;
+}
+
+.label {
+    -fx-text-fill: black;
+}
+
+.tool-bar {
+    -fx-background-color: white;
+}
+
+.check-box {
+    -fx-text-fill: black;
+}
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: darkgray;
+}

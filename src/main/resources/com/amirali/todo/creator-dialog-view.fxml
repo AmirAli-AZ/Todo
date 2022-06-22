@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="dialog-root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amirali.todo.CreatorDialogController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#create" text="Create" />
+        </buttons>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <TextArea fx:id="description" prefHeight="200.0" prefWidth="200.0" promptText="Description" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin></TextArea>
+   </center>
+   <top>
+      <TextField fx:id="title" promptText="Title" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+   </top>
+</BorderPane>
