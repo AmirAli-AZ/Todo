@@ -12,8 +12,26 @@
     -fx-faint-focus-color: transparent;
 }
 
-.list-view .scroll-bar:vertical {
-    -fx-scale-x: 0;
+.list-view > .virtual-flow > .scroll-bar:vertical > .track-background {
+    -fx-background-color: white;
+}
+
+.list-view > .virtual-flow > .scroll-bar:vertical > .thumb {
+    -fx-background-color: lightgray;
+    -fx-background-radius: 5px;
+}
+
+.list-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: white;
+}
+
+.list-view > .virtual-flow > .scroll-bar:horizontal > .thumb {
+    -fx-background-color: lightgray;
+    -fx-background-radius: 5px;
+}
+
+.list-view > .virtual-flow > .corner {
+    -fx-background-color: white;
 }
 
 .list-cell {
@@ -43,7 +61,7 @@
     -fx-text-fill: white;
 }
 
-.menu-item:focused .synced-theme-icons {
+.menu-item:focused > .synced-theme-icons {
     -fx-fill: white;
 }
 
