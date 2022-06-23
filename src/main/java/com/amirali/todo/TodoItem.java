@@ -1,16 +1,13 @@
 package com.amirali.todo;
 
 import com.amirali.todo.model.Todo;
+import com.amirali.todo.utils.DBManager;
 import com.amirali.todo.utils.ModalDialog;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.CustomMenuItem;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -25,13 +22,16 @@ import java.util.Date;
 public class TodoItem extends ListCell<Todo> {
 
     @FXML
+    private HBox root;
+
+    @FXML
     private Label date;
 
     @FXML
-    private AnchorPane root;
+    private Label title;
 
     @FXML
-    private Label title;
+    private CheckBox done;
 
     private FXMLLoader loader;
 
@@ -40,6 +40,8 @@ public class TodoItem extends ListCell<Todo> {
     private final StackPane editorContainer;
 
     private EditorController editorController;
+
+    private boolean initializing;
 
     public TodoItem(@NotNull ObservableList<Todo> baseList, @NotNull StackPane editorContainer) {
         this.baseList = baseList;
@@ -71,10 +73,20 @@ public class TodoItem extends ListCell<Todo> {
                     e.printStackTrace();
                 }
                 setContextMenu(createMenu());
+                done.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+                    if (!initializing) {
+                        var item = getItem();
+                        item.setDone(newValue);
+                        DBManager.getInstance().updateTodo(item);
+                    }
+                });
             }
 
+            initializing = true;
             title.setText(todo.getTitle());
             date.setText(formatDate(todo.getDate()));
+            done.setSelected(todo.isDone());
+            initializing = false;
 
             setGraphic(root);
         }
