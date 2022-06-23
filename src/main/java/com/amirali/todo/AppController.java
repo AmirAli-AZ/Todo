@@ -5,17 +5,19 @@ import com.amirali.todo.utils.DBManager;
 import com.amirali.todo.utils.ModalDialog;
 import com.amirali.todo.utils.Theme;
 import com.amirali.todo.utils.ThemeManager;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.SVGPath;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -88,8 +89,8 @@ public class AppController implements Initializable {
     }
 
     private void search(@NotNull String query) {
-        cachedList.clear();
         if (!query.isEmpty()) {
+            cachedList.clear();
             for (Todo todo : baseList) {
                 if (todo.getTitle().toLowerCase().contains(query.toLowerCase()))
                     cachedList.add(todo);
