@@ -1,13 +1,9 @@
 package com.amirali.todo.utils;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
@@ -19,14 +15,6 @@ public class PopupMessage extends Popup {
     private final StackPane root = new StackPane();
 
     private final Text messageLabel = new Text();
-
-    private final ObjectProperty<Color> colorProperty = new SimpleObjectProperty<>() {
-        @Override
-        public void set(Color color) {
-            super.set(color);
-            root.setStyle("-fx-background-color: #" + Integer.toHexString(color.hashCode()) + ";");
-        }
-    };
 
     public PopupMessage(@NotNull String message) {
         messageLabel.setText(message);
@@ -45,39 +33,11 @@ public class PopupMessage extends Popup {
         setAutoHide(true);
     }
 
-    public void setColor(@NotNull Color color) {
-        colorProperty.set(color);
-    }
-
-    public Color getColor() {
-        return colorProperty.get();
-    }
-
-    public ObjectProperty<Color> colorProperty() {
-        return colorProperty;
+    public void setColor(@NotNull Paint paint) {
+        root.setStyle("-fx-background-color: #" + Integer.toHexString(paint.hashCode()) + ";");
     }
 
     public void setTextColor(@NotNull Paint paint) {
         messageLabel.setFill(paint);
-    }
-
-    public Paint getTextColor() {
-        return messageLabel.getFill();
-    }
-
-    public ObjectProperty<Paint> textFillProperty() {
-        return messageLabel.fillProperty();
-    }
-
-    public void setMessage(@NotNull String message) {
-        messageLabel.setText(message);
-    }
-
-    public String getMessage() {
-        return messageLabel.getText();
-    }
-
-    public StringProperty messageProperty() {
-        return messageLabel.textProperty();
     }
 }
