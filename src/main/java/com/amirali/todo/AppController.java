@@ -5,17 +5,14 @@ import com.amirali.todo.utils.DBManager;
 import com.amirali.todo.utils.ModalDialog;
 import com.amirali.todo.utils.Theme;
 import com.amirali.todo.utils.ThemeManager;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
@@ -92,7 +89,11 @@ public class AppController implements Initializable {
         if (!query.isEmpty()) {
             cachedList.clear();
             for (Todo todo : baseList) {
-                if (todo.getTitle().toLowerCase().contains(query.toLowerCase()))
+                if (query.equalsIgnoreCase(Keywords.CHECKED_TODOS.getKeyword()) && todo.isDone())
+                    cachedList.add(todo);
+                else if (query.equalsIgnoreCase(Keywords.UNCHECKED_TODOS.getKeyword()) && !todo.isDone())
+                    cachedList.add(todo);
+                else if (todo.getTitle().toLowerCase().contains(query.toLowerCase()))
                     cachedList.add(todo);
             }
             todoList.setItems(FXCollections.observableArrayList(cachedList));
