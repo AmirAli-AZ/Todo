@@ -130,9 +130,9 @@ public class TodoItem extends ListCell<Todo> {
 
         String pattern;
         if (date.before(currentDateMinusYear.getTime()))
-            pattern = "dd/MM/yyyy";
+            pattern = "M/d/yyyy";
         else
-            pattern = "MMMM d";
+            pattern = "d MMM";
 
         return new SimpleDateFormat(pattern).format(date);
     }
