@@ -141,8 +141,8 @@ public class TodoItem extends ListCell<Todo> {
         var loader = new FXMLLoader(getClass().getResource("delete-dialog-view.fxml"));
         var modalDialog = new ModalDialog(getScene().getWindow(), loader.load());
         DeleteDialogController controller = loader.getController();
-        controller.setTitle("Delete todo");
-        controller.setMessage("Do you want to delete this todo?");
+        controller.setTitle("Delete \"" + getItem().getTitle() + "\"");
+        controller.setMessage("Do you want to delete \"" + getItem().getTitle() + "\" ?");
         controller.setData(modalDialog, baseList, getItem());
 
         modalDialog.openDialog();
