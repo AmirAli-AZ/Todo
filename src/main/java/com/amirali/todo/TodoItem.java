@@ -144,7 +144,7 @@ public class TodoItem extends ListCell<Todo> {
         DeleteDialogController controller = loader.getController();
         controller.setTitle("Delete \"" + getItem().getTitle() + "\"");
         controller.setMessage("Do you want to delete \"" + getItem().getTitle() + "\" ?");
-        controller.setData(modalDialog, baseList, getItem(), editorContainer);
+        controller.setData(modalDialog, baseList, getItem(), editorController);
 
         modalDialog.openDialog();
     }

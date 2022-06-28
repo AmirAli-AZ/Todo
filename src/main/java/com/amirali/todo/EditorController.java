@@ -2,6 +2,8 @@ package com.amirali.todo;
 
 import com.amirali.todo.model.Todo;
 import com.amirali.todo.utils.DBManager;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
 public class EditorController {
@@ -34,6 +37,8 @@ public class EditorController {
 
     private StackPane editorContainer;
 
+    private boolean editorOpened;
+
     @FXML
     public void save(ActionEvent actionEvent) {
         currentTodo.setTitle(title.getText());
@@ -44,11 +49,10 @@ public class EditorController {
     }
 
     public void openEditor(@NotNull ObservableList<Todo> baseList, @NotNull Todo currentTodo, int currentIndex, @NotNull StackPane editorContainer) {
-        if (!editorContainer.getChildren().isEmpty())
-            editorContainer.getChildren().clear();
+        root.setOpacity(1);
         editorContainer.getChildren().add(root);
 
-        currentTodo.setEditorOpened(true);
+        editorOpened = true;
 
         title.setText(currentTodo.getTitle());
         description.setText(currentTodo.getDescription());
@@ -62,11 +66,32 @@ public class EditorController {
 
     @FXML
     public void close(ActionEvent actionEvent) {
-        editorContainer.getChildren().clear();
-        currentTodo.setEditorOpened(false);
+        closeEditor();
     }
 
     public void setDone(boolean done) {
         this.done.setSelected(done);
+    }
+
+    public void closeEditor() {
+        if (!editorOpened)
+            return;
+
+        var fadeOutAnimation = new FadeTransition(Duration.millis(300), root);
+        fadeOutAnimation.setToValue(0);
+        fadeOutAnimation.setInterpolator(Interpolator.EASE_OUT);
+        fadeOutAnimation.setOnFinished(actionEvent -> {
+            editorContainer.getChildren().clear();
+            editorOpened = false;
+        });
+        fadeOutAnimation.play();
+    }
+
+    public void setEditorOpened(boolean editorOpened) {
+        this.editorOpened = editorOpened;
+    }
+
+    public boolean isEditorOpened() {
+        return editorOpened;
     }
 }

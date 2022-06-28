@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import org.jetbrains.annotations.NotNull;
 
 public class DeleteDialogController {
@@ -21,7 +20,7 @@ public class DeleteDialogController {
 
     private Todo currentTodo;
 
-    private StackPane editorContainer;
+    private EditorController editorController;
 
     @FXML
     public void no(ActionEvent actionEvent) {
@@ -32,18 +31,17 @@ public class DeleteDialogController {
     public void yes(ActionEvent actionEvent) {
         var removedTodo = DBManager.getInstance().remove(currentTodo);
         if (removedTodo != null) {
-            if (currentTodo.isEditorOpened())
-                editorContainer.getChildren().clear();
+            editorController.closeEditor();
             baseList.removeIf(todo -> todo.getId() == removedTodo.getId());
         }
         modalDialog.closeDialog();
     }
 
-    public void setData(@NotNull ModalDialog modalDialog, @NotNull ObservableList<Todo> baseList, @NotNull Todo currentTodo, @NotNull StackPane editorContainer) {
+    public void setData(@NotNull ModalDialog modalDialog, @NotNull ObservableList<Todo> baseList, @NotNull Todo currentTodo, @NotNull EditorController editorController) {
         this.modalDialog = modalDialog;
         this.baseList = baseList;
         this.currentTodo = currentTodo;
-        this.editorContainer = editorContainer;
+        this.editorController = editorController;
     }
 
     public void setTitle(@NotNull String title) {

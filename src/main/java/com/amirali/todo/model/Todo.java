@@ -6,7 +6,7 @@ public class Todo {
     private int id;
     private String title, description;
     private long date;
-    private boolean done, isEditorOpened;
+    private boolean done;
 
     public Todo() {}
 
@@ -58,14 +58,6 @@ public class Todo {
         this.done = done;
     }
 
-    public boolean isEditorOpened() {
-        return isEditorOpened;
-    }
-
-    public void setEditorOpened(boolean editorOpened) {
-        isEditorOpened = editorOpened;
-    }
-
     @Override
     public String toString() {
         return "Todo{" +
@@ -74,7 +66,6 @@ public class Todo {
                 ", description='" + description + '\'' +
                 ", date=" + date +
                 ", done=" + done +
-                ", isEditorOpened=" + isEditorOpened +
                 '}';
     }
 }
