@@ -58,19 +58,8 @@ public class AppController implements Initializable {
 
         searchField.textProperty().addListener((observableValue, oldValue, newValue) -> search(newValue));
         baseList.addListener((ListChangeListener<? super Todo>) change -> {
-            while (change.next()) {
-                if (change.wasRemoved()) {
-                    for (Todo todo : change.getRemoved()) {
-                        if (todo.isEditorOpened()) {
-                            editorContainer.getChildren().clear();
-                            todo.setEditorOpened(false);
-                            break;
-                        }
-                    }
-                }
-
+            while (change.next())
                 search(searchField.getText());
-            }
         });
     }
 

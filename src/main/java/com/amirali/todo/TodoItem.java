@@ -77,6 +77,7 @@ public class TodoItem extends ListCell<Todo> {
                     if (!initializing) {
                         var item = getItem();
                         item.setDone(newValue);
+                        editorController.setDone(newValue);
                         DBManager.getInstance().updateTodo(item);
                     }
                 });
@@ -143,7 +144,7 @@ public class TodoItem extends ListCell<Todo> {
         DeleteDialogController controller = loader.getController();
         controller.setTitle("Delete \"" + getItem().getTitle() + "\"");
         controller.setMessage("Do you want to delete \"" + getItem().getTitle() + "\" ?");
-        controller.setData(modalDialog, baseList, getItem());
+        controller.setData(modalDialog, baseList, getItem(), editorContainer);
 
         modalDialog.openDialog();
     }

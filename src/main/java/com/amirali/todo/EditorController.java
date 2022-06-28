@@ -65,4 +65,8 @@ public class EditorController {
         editorContainer.getChildren().clear();
         currentTodo.setEditorOpened(false);
     }
+
+    public void setDone(boolean done) {
+        this.done.setSelected(done);
+    }
 }
